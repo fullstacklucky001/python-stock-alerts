@@ -3,3 +3,7 @@ tokens.json
 __pycache__
 .pytest_cache
 venv
+credentials.json
+google_token.json
+token.pickle
+tmp/
