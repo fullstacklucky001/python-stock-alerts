@@ -3,8 +3,6 @@ import threading
 from dotenv import load_dotenv
 import os
 from pymongo import MongoClient
-# from quart import Quart, request, jsonify
-# from flask import Flask, request, jsonify
 import datetime
 import time
 import json
@@ -12,46 +10,7 @@ from stream_fields import translate
 from utility_functions import represents_int, playsound, format_currency
 import subprocess
 import asyncio
-
-
-# app = Quart(__name__)
-# FLASK_TOKEN = os.getenv('FLASK_TOKEN')
-
-# @app.route('/stock-endpoint', methods=['POST'])
-# async def handle_stock_data():
-#     auth_header = request.headers.get('Authorization')
- 
-#     if not auth_header:
-#         return jsonify({"error": "Authorization header is required!"}), 400
-
-#     # Assuming the token is provided as 'Bearer <token>'
-#     token_type, token = auth_header.split() if ' ' in auth_header else (None, None)
-
-#     if token_type != 'Bearer' or not token:
-#         return jsonify({"error": "Invalid Authorization format. Use 'Bearer <token>'."}), 400
-
-#     # Get the JSON data from the request body
-#     data = await request.get_json()
-#     if not data:
-#         return jsonify({"error": "Request body must contain JSON data!"}), 400
-
-
-#     # Process the data here (if needed)
-#     print(f'Received stock data: {data}')
-#     active_alerts = get_active_alerts(collection)
-#     symbols_to_stream = list(active_alerts.keys())
-
-#     # Add your logic to handle the token here
-#     return jsonify({"message": f"Token received: {token}"}), 200
-
-
-
-
-# def run_flask_app():
-    # new_loop = asyncio.new_event_loop()
-    # asyncio.set_event_loop(new_loop)
-    # new_loop.run_until_complete(app.run_async(port=5000))
-    # app.run(port=5000)
+from aiohttp import web
 
 def main():
     global active_alerts
@@ -145,7 +104,4 @@ if __name__ == '__main__':
     load_dotenv()
     symbols_to_stream = []
     active_alerts = {}
-    # flask_thread = threading.Thread(target=run_flask_app)
-    # flask_thread.start()
-    # flask_thread.join()
     main()
